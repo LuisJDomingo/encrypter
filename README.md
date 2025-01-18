@@ -24,3 +24,10 @@ Encrypter es una aplicación de línea de comandos para cifrar y descifrar archi
 Para cifrar un archivo, utiliza el siguiente comando:
 ```sh
 python encrypter.py encrypt <ruta_del_archivo>
+```
+
+### Cifrar un archivo
+Para desencriptar un archivo, utiliza el siguiente comando:
+```sh
+python encrypter.py decrypt <ruta_del_archivo>
+```
