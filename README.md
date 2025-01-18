@@ -41,5 +41,5 @@ Ejemplo
 
    ```
 ### Notas
-.- Asegúrate de mantener seguro el archivo encryption.key, ya que es necesario para descifrar los archivos cifrados.
-.- Si pierdes el archivo `encryption.key`, no podrás descifrar los archivos cifrados.
+- Asegúrate de mantener seguro el archivo encryption.key, ya que es necesario para descifrar los archivos cifrados.
+- Si pierdes el archivo `encryption.key`, no podrás descifrar los archivos cifrados.
