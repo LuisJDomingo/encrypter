@@ -1,5 +1,5 @@
 
-## 2. Plan de mejoras
+## Plan de mejoras
 
 ### Mejoras propuestas
 1. **Interfaz gráfica de usuario (GUI)**: Desarrollar una interfaz gráfica para facilitar el uso de la aplicación a usuarios no técnicos.
@@ -14,7 +14,7 @@
 - **Protección de datos sensibles**: Integrar la aplicación en sistemas empresariales para proteger datos sensibles como información financiera y personal.
 - **Seguridad en dispositivos móviles**: Desarrollar una versión de la aplicación para dispositivos móviles para proteger archivos y comunicaciones en smartphones y tablets.
 
-## 3. Stack tecnológico
+## Stack tecnológico
 
 ### Lenguaje de programación
 - **Python 3.x**: Lenguaje de programación interpretado, de alto nivel y de propósito general.
