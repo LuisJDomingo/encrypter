@@ -18,18 +18,24 @@ def encrypt_file(file_name, key):
     with open(file_name, "rb") as file:
         file_data = file.read()
     encrypted_data = f.encrypt(file_data)
-    with open(file_name, "wb") as file:
+    # Cambiar la extensión del archivo a .ncrypt
+    encrypted_file_name = file_name + ".ncrypt"
+    os.rename(file_name, encrypted_file_name)
+    with open(encrypted_file_name, "wb") as file:
         file.write(encrypted_data)
-
-
+        
 def decrypt_file(file_name, key):
     f = Fernet(key)
     with open(file_name, "rb") as file:
         encrypted_data = file.read()
     decrypted_data = f.decrypt(encrypted_data)
+    # Restaurar el nombre original del archivo eliminando la extensión .ncrypt
+    if file_name.endswith(".ncrypt"):
+        original_file_name = file_name[:-6]  # Elimina ".ncrypt"
+        os.rename(file_name, original_file_name)
+        file_name = original_file_name
     with open(file_name, "wb") as file:
         file.write(decrypted_data)
-
 
             
 #######################################file encrypt/decrypt #######################################
