@@ -1,52 +1,40 @@
-import os
 import sys
-from cryptography.fernet import Fernet
-print("1\n")
-def generate_key():
-    key = Fernet.generate_key()
-    print("key: ", key)
-    with open("encryption.key", "wb") as key_file:
-        key_file.write(key)
-        print("\t1.1\n")
-print("2\n")
-def load_key():
-    return open("encryption.key", "rb").read()
-print("3\n")
-def encrypt_file(file_name, key):
-    f = Fernet(key)
-    print("f: ", f)
-    with open(file_name, "rb") as file:
-        file_data = file.read()
-    encrypted_data = f.encrypt(file_data)
-    with open(file_name, "wb") as file:
-        file.write(encrypted_data)
-print("4\n")
-def decrypt_file(file_name, key):
-    f = Fernet(key)
-    with open(file_name, "rb") as file:
-        encrypted_data = file.read()
-    decrypted_data = f.decrypt(encrypted_data)
-    with open(file_name, "wb") as file:
-        file.write(decrypted_data)
-print("0\n")
+import os
+from utils import generate_key, load_key, encrypt_file, decrypt_file, encrypt_folder, decrypt_folder
+
 if __name__ == "__main__":
-    print("0.1\n")
     if len(sys.argv) != 3:
-        print("Usage: python encrypt_storage.py <encrypt/decrypt> <file_path>")
+        print("Usage: python encrypter.py <encrypt/decrypt> <file_or_folder_path>")
         sys.exit(1)
 
     action = sys.argv[1]
-    file_path = sys.argv[2]
+    path = sys.argv[2]
+
+    if not os.path.exists(path):
+        print(f"Error: The path '{path}' does not exist.")
+        sys.exit(1)
 
     if action == "encrypt":
         generate_key()
         key = load_key()
-        encrypt_file(file_path, key)
-        print(f"File {file_path} encrypted successfully.")
+        if os.path.isfile(path):
+            encrypt_file(path, key)
+            print(f"File '{path}' encrypted successfully.")
+        elif os.path.isdir(path):
+            encrypt_folder(path, key)
+            print(f"Folder '{path}' encrypted successfully.")
+        else:
+            print(f"Error: The path '{path}' is neither a file nor a folder.")
     elif action == "decrypt":
         key = load_key()
-        decrypt_file(file_path, key)
-        print(f"File {file_path} decrypted successfully.")
+        if os.path.isfile(path):
+            decrypt_file(path, key)
+            print(f"File '{path}' decrypted successfully.")
+        elif os.path.isdir(path):
+            decrypt_folder(path, key)
+            print(f"Folder '{path}' decrypted successfully.")
+        else:
+            print(f"Error: The path '{path}' is neither a file nor a folder.")
     else:
         print("Invalid action. Use 'encrypt' or 'decrypt'.")
         sys.exit(1)
